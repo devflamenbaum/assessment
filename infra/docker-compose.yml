@@ -25,6 +25,7 @@ services:
       - "8080:80"
     networks:
       - my_network
+      
 
 volumes:
   pismo_data:
