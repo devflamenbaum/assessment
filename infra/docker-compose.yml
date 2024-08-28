@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  postgres-db:
+    image: postgres:13.16
+    container_name: pismo-container-db
+    restart: always
+    networks:
+      - my_network
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=pismouser
+      - POSTGRES_PASSWORD=pismopass
+      - POSTGRES_DB=transactionsdb
+    volumes:
+      - pismo_data:/var/lib/postgresql/data
+  pgadmin:
+    image: dpage/pgadmin4:7.7
+    container_name: my_pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: adminpassword
+    ports:
+      - "8080:80"
+    networks:
+      - my_network
+
+volumes:
+  pismo_data:
+
+networks:
+  my_network:
