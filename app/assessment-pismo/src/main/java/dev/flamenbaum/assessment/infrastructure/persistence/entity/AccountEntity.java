@@ -1,0 +1,24 @@
+package dev.flamenbaum.assessment.infrastructure.persistence.entity;
+
+import jakarta.persistence.*;
+import lombok.Data;
+
+@Entity
+@Table(name = "tb_accounts")
+@Data
+public class AccountEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "account_id", columnDefinition = "SERIAL")
+    private Long accountId;
+    @Column(name = "document_number", columnDefinition = "VARCHAR(255)")
+    private String documentNumber;
+
+    public AccountEntity() {
+    }
+
+    public AccountEntity(String documentNumber) {
+        this.documentNumber = documentNumber;
+    }
+}
