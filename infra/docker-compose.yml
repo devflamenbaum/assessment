@@ -3,17 +3,18 @@ version: '3.8'
 services:
   postgres-db:
     image: postgres:13.16
-    container_name: pismo-container-db
+    container_name: pismo-db
     restart: always
     networks:
       - my_network
     ports:
       - "5432:5432"
     environment:
+      - POSTGRES_DB=root
       - POSTGRES_USER=pismouser
       - POSTGRES_PASSWORD=pismopass
-      - POSTGRES_DB=transactionsdb
     volumes:
+      - ./init-db:/docker-entrypoint-initdb.d
       - pismo_data:/var/lib/postgresql/data
   pgadmin:
     image: dpage/pgadmin4:7.7
