@@ -5,6 +5,7 @@ import dev.flamenbaum.core.domain.OperationType;
 import dev.flamenbaum.core.domain.Transaction;
 import dev.flamenbaum.infrastructure.controller.request.CreateTransactionRequest;
 import dev.flamenbaum.infrastructure.controller.response.CreateTransactionResponse;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,6 +22,7 @@ public class TransactionController {
         this.createTransactionUseCase = createTransactionUseCase;
     }
 
+    @Operation(summary = "Create a new transaction")
     @PostMapping
     public ResponseEntity<CreateTransactionResponse> create(@RequestBody CreateTransactionRequest request) {
         OperationType operationType = new OperationType();

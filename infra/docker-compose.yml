@@ -6,7 +6,7 @@ services:
     container_name: pismo-db
     restart: always
     networks:
-      - my_network
+      - pismo-network
     ports:
       - "5432:5432"
     environment:
@@ -25,11 +25,11 @@ services:
     ports:
       - "8080:80"
     networks:
-      - my_network
+      - pismo-network
       
 
 volumes:
   pismo_data:
 
 networks:
-  my_network:
+  pismo-network:
