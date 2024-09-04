@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>dev.flamenbaum</groupId>
-	<artifactId>service-transaction</artifactId>
+	<artifactId>assessment-pismo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>service-transaction</name>
-	<description>Demo project for Spring Boot</description>
+	<name>assessment-pismo</name>
+	<description>Problem: Customer Account &amp; Transactions Assessment</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -40,18 +40,6 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-validation</artifactId>
-		</dependency>
-
-		<dependency>
-
-			<groupId>org.springdoc</groupId>
-			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-			<version>2.2.0</version>
-		</dependency>
-
-		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
@@ -74,7 +62,6 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<finalName>service-transaction</finalName>
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>

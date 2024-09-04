@@ -23,6 +23,7 @@ public class GlobalControllerAdvice {
         return new ResponseEntity<>(responseBodyBuilder(HttpStatus.BAD_REQUEST, ex, webRequest), HttpStatus.BAD_REQUEST);
     }
 
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Object> handleArgumentNotValidException(MethodArgumentNotValidException ex, WebRequest webRequest) {
         List<String> errors = new ArrayList<>();
@@ -31,10 +32,12 @@ public class GlobalControllerAdvice {
         return new ResponseEntity<>(responseBodyBuilder(HttpStatus.BAD_REQUEST, errors, webRequest), HttpStatus.BAD_REQUEST);
     }
 
+
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<Object> handleResourceNotFoundException(ResourceNotFoundException ex, WebRequest webRequest) {
         return new ResponseEntity<>(responseBodyBuilder(HttpStatus.NOT_FOUND, ex, webRequest), HttpStatus.NOT_FOUND);
     }
+
 
     private Map<String, Object> responseBodyBuilder(HttpStatus status, Exception ex, WebRequest webRequest) {
         Map<String, Object> body = new HashMap<>();
@@ -57,4 +60,5 @@ public class GlobalControllerAdvice {
 
         return body;
     }
+
 }

@@ -25,4 +25,5 @@ public class CreateTransactionRequest {
     private Long operationTypeId;
     @NotNull(message = "The amount is required")
     private String amount;
+
 }

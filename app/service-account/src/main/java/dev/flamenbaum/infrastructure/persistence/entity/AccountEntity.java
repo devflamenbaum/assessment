@@ -26,4 +26,5 @@ public class AccountEntity {
         this.accountId = accountId;
         this.documentNumber = documentNumber;
     }
+
 }
