@@ -1,0 +1,7 @@
+account:
+  api:
+    url: http://serviceAccount:8081/accounts/{accountId}
+
+spring:
+  datasource:
+    url: jdbc:postgresql://postgres-db:5432/transacaodb

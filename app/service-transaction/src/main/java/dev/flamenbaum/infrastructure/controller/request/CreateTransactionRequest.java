@@ -16,14 +16,13 @@ import java.math.BigDecimal;
 public class CreateTransactionRequest {
 
     @NotNull(message = "The account_id is required")
-    @Pattern(regexp = "^[0-9]*$", message = "The account_id only accepts digits!")
     @Min(value = 1, message = "The account_id needs to be greater than 1")
     @JsonProperty("account_id")
     private Long accountId;
     @NotNull(message = "The operation_type_id is required")
-    @Pattern(regexp = "^[0-9]*$", message = "The operation_type_id only accepts digits!")
     @Min(value = 1, message = "The operation_type_id needs to be greater than 1")
     @JsonProperty("operation_type_id")
     private Long operationTypeId;
-    private BigDecimal amount;
+    @NotNull(message = "The amount is required")
+    private String amount;
 }

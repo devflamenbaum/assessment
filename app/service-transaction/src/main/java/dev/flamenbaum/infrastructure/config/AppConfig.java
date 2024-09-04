@@ -9,6 +9,7 @@ import dev.flamenbaum.infrastructure.persistence.TransactionRepository;
 import dev.flamenbaum.infrastructure.service.AccountApiService;
 import dev.flamenbaum.infrastructure.service.OperationTypeRepositoryService;
 import dev.flamenbaum.infrastructure.service.TransactionRepositoryService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
@@ -17,8 +18,8 @@ import org.springframework.web.client.RestTemplate;
 public class AppConfig {
 
     @Bean
-    public AccountGateway accountGateway(RestTemplate restTemplate) {
-        return new AccountApiService(restTemplate);
+    public AccountGateway accountGateway(RestTemplate restTemplate, @Value("${account.api.url}") String accountApiUrl) {
+        return new AccountApiService(restTemplate, accountApiUrl);
     }
 
     @Bean
