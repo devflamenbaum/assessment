@@ -8,6 +8,7 @@ import dev.flamenbaum.infrastructure.controller.request.CreateAccountRequest;
 import dev.flamenbaum.infrastructure.controller.response.CreateAccountResponse;
 import dev.flamenbaum.infrastructure.controller.response.GetAccountByIdResponse;
 import io.swagger.v3.oas.annotations.Operation;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,7 +26,7 @@ public class AccountController {
 
     @Operation(summary = "Create a new account")
     @PostMapping
-    public ResponseEntity<CreateAccountResponse> createAccount(@RequestBody CreateAccountRequest createAccountRequest) {
+    public ResponseEntity<CreateAccountResponse> createAccount(@Valid @RequestBody CreateAccountRequest createAccountRequest) {
 
         Account account = new Account();
         account.setDocumentNumber(createAccountRequest.getDocumentNumber());

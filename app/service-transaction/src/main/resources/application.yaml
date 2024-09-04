@@ -6,15 +6,12 @@ springdoc:
   swagger-ui:
     path: /swagger-ui.html
 
-account:
-  api:
-    url: http://localhost:8081/accounts/{accountId}
-
 spring:
+  profiles:
+    active: local
   application:
-    name: service-account
+    name: service-transaction
   datasource:
-    url: jdbc:postgresql://localhost:5432/transacaodb
     username: ${DB_USERNAME:}
     password: ${DB_PASSWORD:}
     driver-class-name: org.postgresql.Driver

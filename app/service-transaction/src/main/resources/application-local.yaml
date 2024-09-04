@@ -1,0 +1,7 @@
+account:
+  api:
+    url: http://localhost:8081/accounts/{accountId}
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/transacaodb

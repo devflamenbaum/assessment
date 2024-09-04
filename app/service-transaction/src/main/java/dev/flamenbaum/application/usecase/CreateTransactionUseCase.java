@@ -6,6 +6,8 @@ import dev.flamenbaum.application.gateway.TransactionGateway;
 import dev.flamenbaum.core.domain.OperationType;
 import dev.flamenbaum.core.domain.Transaction;
 import dev.flamenbaum.core.enumeration.TransactionType;
+import dev.flamenbaum.core.exception.OperationTypeException;
+import dev.flamenbaum.core.exception.ResourceNotFoundException;
 import dev.flamenbaum.core.exception.TransactionException;
 
 import java.math.BigDecimal;
@@ -28,7 +30,7 @@ public class CreateTransactionUseCase {
         Optional<OperationType> opt = operationTypeGateway.getOperationTypeById(transaction.getOperationType().getOperationTypeId());
 
         OperationType operationType = opt
-                .orElseThrow(RuntimeException::new);
+                .orElseThrow(OperationTypeException::new);
 
         TransactionType transactionType = operationType.getTransactionType();
 
@@ -45,7 +47,7 @@ public class CreateTransactionUseCase {
         }
 
         if(!accountGateway.hasAccountById(transaction.getAccountId())) {
-            throw new TransactionException(String.format("Invalid Account, There is no account with id: %s", transaction.getAccountId()));
+            throw new ResourceNotFoundException(String.format("Invalid Account, There is no account with id: %s", transaction.getAccountId()));
         }
         return transactionGateway.create(transaction);
     }
