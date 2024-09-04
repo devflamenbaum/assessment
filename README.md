@@ -1,7 +1,7 @@
 
 <h1 align="center">
   <br>
-  <img src="./misc/pismo-logo.png" alt="pismo-logo" width="200"></a>
+  <img src="./misc/pismo-logo.png" alt="pismo-logo" width="200">
   <br>
   Tech Assessment
   <br>
@@ -10,101 +10,134 @@
 <h4 align="center">Problem: Customer Account & Transactions.</h4>
 
 <p align="center">
-  ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
-  
-</p>
-
-<p align="center">
-  <a href="#key-features">Key Features</a> •
-  <a href="#how-to-use">How To Use</a> •
-  <a href="#download">Download</a> •
-  <a href="#credits">Credits</a> •
-  <a href="#related">Related</a> •
+  <a href="#About">About</a> •
+  <a href="#Technologies">Technologies</a> •
+  <a href="#Requirements">Requirements</a> •
+  <a href="#Folders">Folders</a> •
+  <a href="#related">How to Use</a> •
   <a href="#license">License</a>
 </p>
 
-![screenshot](https://raw.githubusercontent.com/amitmerchant1990/electron-markdownify/master/app/img/markdownify.gif)
+## About
 
-## Key Features
+The project was created as part of technical assessment for a SW Engineer Position.
 
-* LivePreview - Make changes, See changes
-  - Instantly see what your Markdown documents look like in HTML as you create them.
-* Sync Scrolling
-  - While you type, LivePreview will automatically scroll to the current location you're editing.
-* GitHub Flavored Markdown  
-* Syntax highlighting
-* [KaTeX](https://khan.github.io/KaTeX/) Support
-* Dark/Light mode
-* Toolbar for basic Markdown formatting
-* Supports multiple cursors
-* Save the Markdown preview as PDF
-* Emoji support in preview :tada:
-* App will keep alive in tray for quick usage
-* Full screen mode
-  - Write distraction free.
-* Cross platform
-  - Windows, macOS and Linux ready.
+* Architechture that I proposed for this problem:
+
+<img src="./misc/pismo-architecture.png" alt="pismo-logo" width="500" style="display: block; margin: auto;">
+
+## Technologies
+
+* Java - 17
+* Docker
+* Maven - 3.7+
+* Postgres
+* Spring - 3.3
+
+## Requirements
+
+* Docker
+* Git
+* Java
+* Maven
+
+## Folders
+
+* /app
+    * /service-account
+    * /service-transaction
+* /infra
+    * /init-db
 
 ## How To Use
 
-To clone and run this application, you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
+To clone and run this application, you'll need [Git](https://git-scm.com) and [Docker](https://www.docker.com/):
+
+> **Note**
+> If you're using Git Bash for Windows, but you can use prompt cmd as well.
 
 ```bash
 # Clone this repository
-$ git clone https://github.com/amitmerchant1990/electron-markdownify
+$ git clone https://github.com/devflamenbaum/assessment.git
 
 # Go into the repository
-$ cd electron-markdownify
-
-# Install dependencies
-$ npm install
-
-# Run the app
-$ npm start
+$ cd ./assessment
 ```
 
+To Start you need to go to `infra` folder and start the postgres/pgadmin container via `docker compose`
+
 > **Note**
-> If you're using Linux Bash for Windows, [see this guide](https://www.howtogeek.com/261575/how-to-run-graphical-linux-desktop-applications-from-windows-10s-bash-shell/) or use `node` from the command prompt.
+> Make sure your docker is up and running.
 
+```bash
+# Check wheter docker is running or not
+$ docker version
 
-## Download
+# Go into infra folder
+$ cd ./infra
 
-You can [download](https://github.com/amitmerchant1990/electron-markdownify/releases/tag/v1.2.0) the latest installable version of Markdownify for Windows, macOS and Linux.
+# Run docker compose in detach mode
+$ docker-compose up -d
+```
 
-## Emailware
+Now you have the database and a GUI, you can access the interface: [pgadmin](http://localhost:8080). 
 
-Markdownify is an [emailware](https://en.wiktionary.org/wiki/emailware). Meaning, if you liked using this app or it has helped you in any way, I'd like you send me an email at <bullredeyes@gmail.com> about anything you'd want to say about this software. I'd really appreciate it!
+> **Note**
+> Pgadmin default credentials, username: admin@example.com, password: adminpassword (you can create or change this credentials by modify the docker-compose.yml)
 
-## Credits
+> **Note 2**
+> All database, tables and scripts for this challenge has already run! Check `./init-db` for futher info.
 
-This software uses the following open source packages:
+From the `app` folder, start to build each microservice image by running:
 
-- [Electron](http://electron.atom.io/)
-- [Node.js](https://nodejs.org/)
-- [Marked - a markdown parser](https://github.com/chjj/marked)
-- [showdown](http://showdownjs.github.io/showdown/)
-- [CodeMirror](http://codemirror.net/)
-- Emojis are taken from [here](https://github.com/arvida/emoji-cheat-sheet.com)
-- [highlight.js](https://highlightjs.org/)
+```bash
 
-## Related
+# fisrt build
 
-[markdownify-web](https://github.com/amitmerchant1990/markdownify-web) - Web version of Markdownify
+# Go to service-account microservice folder
+$ cd service-account
 
-## Support
+# Build the image - it can take a while (first build)
+$ docker build -t service-account .
 
-<a href="https://www.buymeacoffee.com/5Zn8Xh3l9" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/purple_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
+# Second Build
 
-<p>Or</p> 
+# Go back to app and then go to service-transaction microservice folder
+$ cd ..
 
-<a href="https://www.patreon.com/amitmerchant">
-	<img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
-</a>
+$ cd service-transaction
 
-## You may also like...
+# Build the image - it can take a while (first build)
+$ docker build -t service-transaction .
 
-- [Pomolectron](https://github.com/amitmerchant1990/pomolectron) - A pomodoro app
-- [Correo](https://github.com/amitmerchant1990/correo) - A menubar/taskbar Gmail App for Windows and macOS
+```
+
+Now you are ready to launch, both microservices:
+> **Note**
+> You can run in detach mode or open 2 terminal for each docker run to check app logs
+
+```bash
+
+# first run (service-account) - need to type exact this command
+
+$ docker run -p 8081:8081 --network infra_pismo-network --name serviceAccount service-account 
+
+# --network infra_pismo-network, it run in the same docker network
+# --name serviceAccount has to be this name, otherwise service-transaction can`t do a request
+```
+
+```bash
+
+# first run (service-account) - need to type exact this command
+
+$ docker run -p 8082:8082 --network infra_pismo-network --name serviceTransaction service-transaction
+
+# --network infra_pismo-network, it run in the same docker network
+# --name serviceTransaction (optional), docker will infer
+```
+
+<strong>Now it is running :) </strong>
+
 
 ## License
 
@@ -112,7 +145,4 @@ MIT
 
 ---
 
-> [amitmerchant.com](https://www.amitmerchant.com) &nbsp;&middot;&nbsp;
-> GitHub [@amitmerchant1990](https://github.com/amitmerchant1990) &nbsp;&middot;&nbsp;
-> Twitter [@amit_merchant](https://twitter.com/amit_merchant)
 
