@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: automated-test
+  datasource:
+    primary:
+      jdbc-url: jdbc:postgresql://localhost:5432/accountdb
+      username: pismouser
+      password: pismopass
+      driver-class-name: org.postgresql.Driver
+
+    secondary:
+      jdbc-url: jdbc:postgresql://localhost:5432/transacaodb
+      username: pismouser
+      password: pismopass
+      driver-class-name: org.postgresql.Driver
