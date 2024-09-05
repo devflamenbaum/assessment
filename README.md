@@ -48,6 +48,7 @@ The project was created as part of technical assessment for a SW Engineer Positi
     * /service-transaction
 * /infra
     * /init-db
+* /tests (cucumber/integrados automatizados)
 
 ## How To Use
 

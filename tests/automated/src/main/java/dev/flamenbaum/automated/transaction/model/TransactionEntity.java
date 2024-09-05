@@ -1,4 +1,4 @@
-package dev.flamenbaum.infrastructure.persistence.entity;
+package dev.flamenbaum.automated.transaction.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
