@@ -9,6 +9,7 @@ import dev.flamenbaum.core.enumeration.TransactionType;
 import dev.flamenbaum.core.exception.OperationTypeException;
 import dev.flamenbaum.core.exception.ResourceNotFoundException;
 import dev.flamenbaum.core.exception.TransactionException;
+import dev.flamenbaum.infrastructure.service.ApiRequest.GetByIdAccountRequest;
 
 import java.math.BigDecimal;
 import java.util.Optional;
@@ -46,9 +47,17 @@ public class CreateTransactionUseCase {
             throw new TransactionException(String.format("Invalid Transaction Amount: %s shouldn`t be 0.00", transaction.getAmount()));
         }
 
-        if(!accountGateway.hasAccountById(transaction.getAccountId())) {
+        GetByIdAccountRequest getByIdAccountRequest = accountGateway.hasAccountById(transaction.getAccountId());
+
+        if(getByIdAccountRequest == null) {
             throw new ResourceNotFoundException(String.format("Invalid Account, There is no account with id: %s", transaction.getAccountId()));
         }
+
+        if(transactionType == TransactionType.CREDIT) {
+            getByIdAccountRequest.setAvailableCreditLimit(getByIdAccountRequest.getAvailableCreditLimit().add(transaction.getAmount()));
+
+        }
+
         return transactionGateway.create(transaction);
     }
 }

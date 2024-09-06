@@ -11,4 +11,6 @@ public interface AccountGateway {
     Optional<Account> getById(Long id);
 
     Optional<Account> getByDocumentNumber(String documentNumber);
+
+    Account updated(Account accountToUpdated);
 }

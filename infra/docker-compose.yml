@@ -14,7 +14,7 @@ services:
       - POSTGRES_USER=pismouser
       - POSTGRES_PASSWORD=pismopass
     volumes:
-      - ./init-db:/docker-entrypoint-initdb.d
+      # - ./init-db:/docker-entrypoint-initdb.d
       - pismo_data:/var/lib/postgresql/data
   pgadmin:
     image: dpage/pgadmin4:7.7

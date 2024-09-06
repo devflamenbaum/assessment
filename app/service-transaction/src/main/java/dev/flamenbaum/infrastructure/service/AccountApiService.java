@@ -2,6 +2,7 @@ package dev.flamenbaum.infrastructure.service;
 
 import dev.flamenbaum.application.gateway.AccountGateway;
 import dev.flamenbaum.core.exception.AccountApiException;
+import dev.flamenbaum.infrastructure.service.ApiRequest.GetByIdAccountRequest;
 import org.springframework.http.*;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClientException;
@@ -21,15 +22,15 @@ public class AccountApiService implements AccountGateway {
     }
 
     @Override
-    public boolean hasAccountById(Long accountId) {
+    public GetByIdAccountRequest hasAccountById(Long accountId) {
 
         try {
-            ResponseEntity<Object> response = restTemplate
-                    .exchange(accountApiUrl, HttpMethod.GET, httpEntity(), Object.class, uriVariables(accountId));
+            ResponseEntity<GetByIdAccountRequest> response = restTemplate
+                    .exchange(accountApiUrl, HttpMethod.GET, httpEntity(), GetByIdAccountRequest.class, uriVariables(accountId));
 
-            return response.getStatusCode().is2xxSuccessful();
+            return response.getBody();
         } catch (HttpClientErrorException ex) {
-            return false;
+            return null;
         } catch(RestClientException ex) {
             throw new AccountApiException("Account API is unavailable, try the operation later!");
         }

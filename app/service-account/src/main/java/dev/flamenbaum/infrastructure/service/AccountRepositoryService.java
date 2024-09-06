@@ -17,16 +17,16 @@ public class AccountRepositoryService implements AccountGateway {
 
     @Override
     public Account create(Account account) {
-        AccountEntity accountEntity = new AccountEntity(account.getDocumentNumber());
+        AccountEntity accountEntity = new AccountEntity(account.getDocumentNumber(), account.getAvailableCreditLimit());
         AccountEntity savedEntity = repository.save(accountEntity);
-        return new Account(savedEntity.getAccountId(), savedEntity.getDocumentNumber());
+        return new Account(savedEntity.getAccountId(), savedEntity.getDocumentNumber(), savedEntity.getAvailableCreditLimit());
     }
 
     @Override
     public Optional<Account> getById(Long id) {
         Optional<AccountEntity> optionalAccountEntity = repository.findById(id);
         return optionalAccountEntity
-                .map(accountEntity -> new Account(accountEntity.getAccountId(), accountEntity.getDocumentNumber()));
+                .map(accountEntity -> new Account(accountEntity.getAccountId(), accountEntity.getDocumentNumber(), accountEntity.getAvailableCreditLimit()));
     }
 
     @Override
@@ -34,6 +34,13 @@ public class AccountRepositoryService implements AccountGateway {
         Optional<AccountEntity> optionalAccountEntity = repository.findByDocumentNumber(documentNumber);
 
         return optionalAccountEntity
-                .map(accountEntity -> new Account(accountEntity.getAccountId(), accountEntity.getDocumentNumber()));
+                .map(accountEntity -> new Account(accountEntity.getAccountId(), accountEntity.getDocumentNumber(), accountEntity.getAvailableCreditLimit()));
+    }
+
+    @Override
+    public Account updated(Account accountToUpdated) {
+        AccountEntity entity = new AccountEntity(accountToUpdated.getAccountId(), accountToUpdated.getDocumentNumber(), accountToUpdated.getAvailableCreditLimit());
+        AccountEntity updated = repository.save(entity);
+        return new Account(updated.getAccountId(), updated.getDocumentNumber(), updated.getAvailableCreditLimit());
     }
 }

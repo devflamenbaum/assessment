@@ -1,6 +1,8 @@
 package dev.flamenbaum.application.gateway;
 
+import dev.flamenbaum.infrastructure.service.ApiRequest.GetByIdAccountRequest;
+
 public interface AccountGateway {
 
-    boolean hasAccountById(Long accountId);
+    GetByIdAccountRequest hasAccountById(Long accountId);
 }

@@ -64,6 +64,8 @@ public class StepTransactionTest extends AutomatedApplicationTests<CreateTransac
 
     @And("Remove test transaction")
     public void removeTestTransaction() {
-        transactionRepository.deleteByIdNatively(respBody.getTransactionId());
+        if (status == 201) {
+            transactionRepository.deleteByIdNatively(respBody.getTransactionId());
+        }
     }
 }
